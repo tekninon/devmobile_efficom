@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.devmobile_efficom.R;
 
 public class HomeFragment extends Fragment {
-    public static final String API_KEY = "f57df3003d1cee727235559efc58a4e3";
+
     private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
