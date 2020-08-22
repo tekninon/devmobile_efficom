@@ -1,7 +1,6 @@
 package com.example.devmobile_efficom.Retrofit;
 
 import com.example.devmobile_efficom.Constantes.Constantes;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
