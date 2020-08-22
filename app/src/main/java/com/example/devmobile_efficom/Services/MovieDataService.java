@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * Service qui va permettre de recuperer les donnees de l'api 
+ * Service qui va permettre de recuperer les donnees de l'api
  */
 public interface MovieDataService {
 
