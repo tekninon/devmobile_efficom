@@ -1,4 +1,4 @@
-package com.example.devmobile_efficom.ui.home;
+package com.example.devmobile_efficom.ui.movies;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

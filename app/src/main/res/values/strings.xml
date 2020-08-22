@@ -3,4 +3,6 @@
     <string name="title_home">Films</string>
     <string name="title_dashboard">Recherche</string>
     <string name="title_notifications">Profil</string>
+    <string name="affiche">Affiche</string>
+
 </resources>
