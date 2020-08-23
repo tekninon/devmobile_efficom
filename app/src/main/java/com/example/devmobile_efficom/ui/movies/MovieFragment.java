@@ -2,8 +2,10 @@ package com.example.devmobile_efficom.ui.movies;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +24,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.devmobile_efficom.Adapter.MovieAdapter;
 import com.example.devmobile_efficom.Constantes.Constantes;
+import com.example.devmobile_efficom.Database.SQLite;
 import com.example.devmobile_efficom.R;
 import com.example.devmobile_efficom.Retrofit.RetrofitInstance;
 import com.example.devmobile_efficom.Services.MovieDataService;
 import com.example.devmobile_efficom.models.Movie;
 import com.example.devmobile_efficom.models.MoviesResponse;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,24 +51,26 @@ public class MovieFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_movies, container, false);
+    }
 
-
-       /* movieViewModel =
-                ViewModelProviders.of(this).get(MovieViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_movies, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        movieViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;*/
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_movies);
+        setHasOptionsMenu(true);
 
+        initViews();
+        recyclerView.findViewById(R.id.recycler_view);
+    }
 
-        return null;
+    private void initViews() {
+        recyclerView.findViewById(R.id.recycler_view);
+        movieList = new ArrayList<>();
+        adapter = new MovieAdapter(movieList,getActivity());
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        loadData();
+
     }
 
     private void loadData() {
