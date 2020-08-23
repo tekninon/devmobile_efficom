@@ -1,7 +1,18 @@
 package com.example.devmobile_efficom;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+import android.app.ProgressDialog;
 
+import com.example.devmobile_efficom.Adapter.MovieAdapter;
+import com.example.devmobile_efficom.Constantes.Constantes;
+import com.example.devmobile_efficom.Retrofit.RetrofitInstance;
+import com.example.devmobile_efficom.Services.MovieDataService;
+import com.example.devmobile_efficom.models.Movie;
+import com.example.devmobile_efficom.models.MoviesResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +20,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 public class MainActivity extends AppCompatActivity {
+
+
 
 
     @Override
@@ -27,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
-
 }

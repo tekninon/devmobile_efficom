@@ -1,5 +1,9 @@
 package com.example.devmobile_efficom.Constantes;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 public class Constantes {
 
     //Cle api
@@ -7,4 +11,15 @@ public class Constantes {
 
     //url api
     public final static String API_URL = "http://api.themoviedb.org/3/";
+
+    //addon api language
+    public final static String API_LANGUAGE = "fr";
+
+    //Check up network is available
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
 }

@@ -1,57 +1,84 @@
 package com.example.devmobile_efficom.models;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.io.Serializable;
-import java.util.List;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MoviesResponse implements Serializable
-{
+import java.util.List;
+
+public class MoviesResponse implements Parcelable {
 
     @SerializedName("page")
-    @Expose
-    private Integer page;
+    private int page;
     @SerializedName("total_movies")
-    @Expose
-    private Integer totalMovies;
+    private int totalMovies;
     @SerializedName("total_pages")
-    @Expose
-    private Integer totalPages;
+    private int totalPages;
     @SerializedName("movies")
-    @Expose
-    private List<Movie> movies = null;
-    private final static long serialVersionUID = 1234371452767924930L;
+    private List<Movie> movies;
 
-    public Integer getPage() {
+
+
+    public int getPage() {
         return page;
     }
-
-    public void setPage(Integer page) {
+    public void setPage(int page) {
         this.page = page;
     }
 
-    public Integer getTotalMovies() {
+    public int getTotalMovies() {
         return totalMovies;
     }
-
-    public void setTotalResults(Integer totalMovies) {
+    public void setTotalResults(int totalMovies) {
         this.totalMovies = totalMovies;
     }
 
-    public Integer getTotalPages() {
+    public int getTotalPages() {
         return totalPages;
     }
-
-    public void setTotalPages(Integer totalPages) {
+    public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
 
     public List<Movie> getMovies(){
         return movies;
     }
+    public void setMovies(List<Movie> movies) { this.movies = movies;}
 
+    public List<Movie> getResults() {return movies;}
     public void setResults(List<Movie> movies) {
         this.movies = movies;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.page);
+        dest.writeTypedList(this.movies);
+        dest.writeInt(this.totalMovies);
+        dest.writeInt(this.totalPages);
+    }
+    protected MoviesResponse(Parcel in) {
+        page = in.readInt();
+        totalMovies = in.readInt();
+        totalPages = in.readInt();
+        movies = in.createTypedArrayList(Movie.CREATOR);
+    }
+
+    public static final Creator<MoviesResponse> CREATOR = new Creator<MoviesResponse>() {
+        @Override
+        public MoviesResponse createFromParcel(Parcel in) {
+            return new MoviesResponse(in);
+        }
+
+        @Override
+        public MoviesResponse[] newArray(int size) {
+            return new MoviesResponse[size];
+        }
+    };
 
 }
