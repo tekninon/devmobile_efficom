@@ -56,6 +56,8 @@ public class Movie implements Serializable
     private String releaseDate;
     private final static long serialVersionUID = -1268392621588810706L;
 
+
+
     public Double getPopularity() {
         return popularity;
     }
